@@ -1,14 +1,10 @@
-public enum GlyphModifierType { Movement, Shape }
-
 [CreateAssetMenu(fileName = "NewGlyph", menuName = "Spells/Glyph")]
 public class Glyph : ScriptableObject
 {
-    [Header("Modificateur")]
-    public GlyphModifierType modifierType;
-
+    [Header("Mouvement")]
     public Vector3 direction;
     public float movementDistance;
-    public float movementDuration;
 
-    public GameObject shapePrefab;
+    [Header("Effets déclenchés au hit")]
+    public List<SpellEffect> hitEffects;
 }
