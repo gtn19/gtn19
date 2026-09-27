@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class glyphSequenceRunner : MonoBehaviour
 {
-
+    public float speed;
     public IEnumerator ExecuteSequence(List<Glyph> glyphs, GameObject caster, GameObject shapeInstance)
     {
         shapeInstance.AddComponent<SpellHitDetector>();
@@ -15,8 +15,8 @@ public class glyphSequenceRunner : MonoBehaviour
             bool hitOccurred = false;
             GameObject hitTarget = null;
             Vector3 targetPos = currentPosition + glyph.direction * glyph.movementDistance;
-
-            Coroutine movement = StartCoroutine(MoveToPos(shapeInstance, targetPos, 1f,
+            float duration = glyph.movementDistance / speed;
+            Coroutine movement = StartCoroutine(MoveToPos(shapeInstance, targetPos, duration,
                 onHit: (target) => { hitOccurred = true; hitTarget = target; }));
 
             yield return movement;
